@@ -41,3 +41,4 @@ jobs:
             --service backend-mongo-avib10-service-x16djjrd \
             --task-definition ${{ secrets.AWS_BACKEND_TASK }} \
             --force-new-deployment
+            --no-load-balancers
