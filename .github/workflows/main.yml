@@ -34,11 +34,10 @@ jobs:
           docker tag backend:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/${{ secrets.ECR_BACKEND_REPO }}:latest
           docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/${{ secrets.ECR_BACKEND_REPO }}:latest
 
-      - name: Deploy backend task to ECS
+      - name: Deploy backend task to ECS (without Load Balancer)
         run: |
           aws ecs update-service \
             --cluster ${{ secrets.ECS_CLUSTER }} \
             --service backend-mongo-avib10-service-x16djjrd \
             --task-definition ${{ secrets.AWS_BACKEND_TASK }} \
             --force-new-deployment
-            --no-load-balancers
